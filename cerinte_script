@@ -1,0 +1,23 @@
+acest script trebuie sa:
+ - Afiseze speed-ul interfetei GigabitEthernet1 al ruterului CSR1000v,
+ - Afiseze duplexul interfetei GigabitEthernet1 al ruterului CSR1000v,
+ - Afiseze statusul interfetei GigabitEthernet1 al ruterului CSR1000v,
+ - Configureze interfata Loopback100 cu parametrii:
+{
+    "ietf-interfaces:interface": {
+        "name": "Loopback100",
+        "description": "Adaugata prin restconf",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": True,
+        "ietf-ip:ipv4": {
+            "address": [
+                {
+                    "ip": "150.1.1.1",
+                    "netmask": "255.255.255.0"
+                }
+            ]
+        }
+    }
+}
+   - Daca aceasta interfata a fost creata cu succes sa se salveze configuratia ruterului.
+   - Daca nu, atunci sa returneze eroarea pentru care nu a reusit sa o creeze.
