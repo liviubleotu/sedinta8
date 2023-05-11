@@ -1,0 +1,319 @@
+CSR1kv#sh run
+Building configuration...
+
+Current configuration : 8513 bytes
+!
+! Last configuration change at 06:34:54 UTC Thu May 11 2023
+!
+version 16.12
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service call-home
+platform qfp utilization monitor load 80
+platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR1kv
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+  no destination transport-method email
+!
+!
+!
+!
+!
+!
+!
+ip domain name cisco.com
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+!
+crypto pki trustpoint TP-self-signed-1978169843
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1978169843
+ revocation-check none
+ rsakeypair TP-self-signed-1978169843
+!
+!
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0
+  D697DF7F 28
+  	quit
+crypto pki certificate chain TP-self-signed-1978169843
+ certificate self-signed 02
+  30820330 30820218 A0030201 02020102 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 31393738 31363938 3433301E 170D3233 30343239 31373537
+  31385A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 39373831
+  36393834 33308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201
+  0A028201 0100B790 09F88CAF 9A64362B 25DF2650 A309D881 990487AC 5E32092F
+  383F1566 C3A4A01D 78C2E5C5 9779A62E 1F974B67 C0734C80 E47BB10A 716943A2
+  CDF06D73 353AF692 1694736C B7AAC79F 0E3596C5 3B6F2F13 8F54A618 0668D936
+  6BB7B194 7A2B231F 98B6B31E 1FE9ABC4 411D9E78 B8F44C92 549A2CBD 6E88E0BD
+  75484A6C B808FF13 F98DC437 EA3A31F6 BF842024 B63F11B1 072A4112 60162003
+  3C0F4FC6 3371FDA1 2D86654B 4BDAEFAB BDA3ADA3 275D3D6A D66231F6 7726065A
+  A3728972 297B1FC4 6EF25BFB C8CCEBED 3D0EE8CC 90F7D458 92EE82EA 3006E713
+  21EB64B0 F5117E28 95D7884F 0E4C3EA8 89FD7893 1B014EB0 514736F7 FDFE4452
+  2C9D12E6 16910203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF
+  301F0603 551D2304 18301680 148A7B4D 1FC89D58 AD5BB923 5D17FA91 2483FABF
+  C5301D06 03551D0E 04160414 8A7B4D1F C89D58AD 5BB9235D 17FA9124 83FABFC5
+  300D0609 2A864886 F70D0101 05050003 82010100 280D0D0E 8F06B436 351D49BD
+  B93D182C B1FA010E E033FA34 8C7A03E6 E8DBC8A7 7C293EBA B854CB7A 8130DD9D
+  3EEBB86A 57A7CCB3 C77AAC8C E5D90338 C7449EAF 1E30F2CF B9036DBF 9B5CA25A
+  C627B91B E50E73C6 80C5DC34 4D2BFCE1 39067917 33EC3525 3862D2E9 F695C76F
+  D6F10854 D83EED32 D18FABDD 7AD5258F A328D198 0E447186 CD830578 3506E2F5
+  AC3B3AC4 839EB70A E9DC144E B7721287 9B076CF2 F99EC160 87641A4D 12F2201C
+  D6BAAE98 707978A2 ED7D87D9 C2DF016F F3DAE1A4 D444BC3D A19D6BA9 F9FD61BE
+  AF19E903 D14C39E1 E597B49D 36FABC2F 9EFC9184 F83575B6 19AABE1F E0DB7505
+  2444283E 4050EB61 5DD2FBB5 BC3A120C 117E7A56
+  	quit
+!
+crypto pki certificate pool
+ cabundle nvram:ios_core.p7b
+!
+license udi pid CSR1000V sn 9FXTOW6M4NH
+diagnostic bootup level minimal
+memory free low-watermark processor 72343
+!
+!
+spanning-tree extend system-id
+!
+username student privilege 15 secret 9 $9$n7yMkEhkw0he3U$.1zHUwmjZ/hNT9GK79oMTa77JTEgpCr9INsfAUc.vl2
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 172.16.10.1 255.255.255.255
+!
+interface Loopback2
+ ip address 172.16.10.2 255.255.255.255
+!
+interface Loopback3
+ ip address 172.16.10.3 255.255.255.255
+!
+interface Loopback4
+ ip address 172.16.10.4 255.255.255.255
+!
+interface Loopback5
+ ip address 172.16.10.5 255.255.255.255
+!
+interface Loopback10
+ ip address 172.16.100.1 255.255.255.255
+!
+interface Loopback11
+ ip address 172.16.100.2 255.255.255.255
+!
+interface Loopback12
+ ip address 172.16.100.3 255.255.255.255
+!
+interface Loopback13
+ ip address 172.16.100.4 255.255.255.255
+!
+interface Loopback100
+ description Adaugata prin restconf
+ ip address 150.1.1.1 255.255.255.0
+!
+interface VirtualPortGroup1
+ ip address 172.16.110.1 255.255.255.0
+ ip nat inside
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1
+ ip address dhcp
+ ip nat outside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ ip address 1.0.0.1 255.255.255.252
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet4
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+router ospf 1
+ network 1.0.0.0 0.0.0.3 area 0
+ network 172.16.10.0 0.0.0.255 area 0
+!
+router bgp 1234
+ bgp log-neighbor-changes
+ network 172.16.100.1 mask 255.255.255.255
+ network 172.16.100.2 mask 255.255.255.255
+ network 172.16.100.3 mask 255.255.255.255
+ network 172.16.100.4 mask 255.255.255.255
+ neighbor 172.16.20.1 remote-as 5678
+ neighbor 172.16.20.1 disable-connected-check
+ neighbor 172.16.20.1 update-source Loopback1
+ neighbor 172.16.20.2 remote-as 5678
+ neighbor 172.16.20.2 disable-connected-check
+ neighbor 172.16.20.2 update-source Loopback2
+ neighbor 172.16.20.3 remote-as 5678
+ neighbor 172.16.20.3 disable-connected-check
+ neighbor 172.16.20.3 update-source Loopback3
+ neighbor 172.16.20.4 remote-as 5678
+ neighbor 172.16.20.4 disable-connected-check
+ neighbor 172.16.20.4 update-source Loopback4
+ neighbor 172.16.20.5 remote-as 5678
+ neighbor 172.16.20.5 disable-connected-check
+ neighbor 172.16.20.5 update-source Loopback5
+!
+iox
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip http client source-interface GigabitEthernet1
+!
+ip nat inside source static tcp 172.16.110.2 5201 192.168.0.47 5000 extendable
+ip nat inside source list 10 interface GigabitEthernet1 overload
+ip ssh version 2
+ip scp server enable
+!
+!
+ip access-list standard 10
+ 10 permit 172.16.110.0
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ login local
+ transport input all
+line vty 5 530
+ login local
+ transport input all
+!
+!
+!
+!
+!
+!
+app-hosting appid iperf3
+ app-vnic gateway1 virtualportgroup 1 guest-interface 0
+  guest-ipaddress 172.16.110.2 netmask 255.255.255.0
+ app-default-gateway 172.16.110.1 guest-interface 0
+ app-resource docker
+  run-opts 1 "--restart=unless-stopped -p 5201:5201/tcp"
+netconf-yang
+restconf
+end
+
+CSR1kv#
